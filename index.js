@@ -1,11 +1,22 @@
 const contactsOperations = require("./contacts");
-console.log("contactsOperations: ", contactsOperations);
+const { Command } = require("commander");
+const program = new Command();
+program
+  .option("-a, --action <type>", "choose action")
+  .option("-i, --id <type>", "user id")
+  .option("-n, --name <type>", "user name")
+  .option("-e, --email <type>", "user email")
+  .option("-p, --phone <type>", "user phone");
+
+program.parse(process.argv);
+
+const argv = program.opts();
 
 async function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
     case "list":
       const contactsList = await contactsOperations.listContacts();
-      console.log("contactsList: ", contactsList);
+      console.table(contactsList);
       break;
 
     case "get":
@@ -13,7 +24,7 @@ async function invokeAction({ action, id, name, email, phone }) {
       if (!contact) {
         throw new Error(`Contact with id=${id} not found!`);
       }
-      console.log("contact: ", contact);
+      console.table(contact);
       break;
 
     case "add":
@@ -22,7 +33,7 @@ async function invokeAction({ action, id, name, email, phone }) {
         email,
         phone,
       );
-      console.log("added contact: ", newContact);
+      console.table(newContact);
       break;
 
     case "remove":
@@ -30,7 +41,7 @@ async function invokeAction({ action, id, name, email, phone }) {
       if (!deletedСontact) {
         throw new Error(`Contact with id=${id} not found!`);
       }
-      console.log("deletedСontact: ", deletedСontact);
+      console.table(deletedСontact);
       break;
 
     default:
@@ -38,7 +49,4 @@ async function invokeAction({ action, id, name, email, phone }) {
   }
 }
 
-invokeAction({
-  action: "remove",
-  id: "R2I7nrbkAvzQjMaqFppWr",
-});
+invokeAction(argv);
