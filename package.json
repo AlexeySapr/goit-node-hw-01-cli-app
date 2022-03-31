@@ -1,0 +1,24 @@
+{
+  "name": "goit-node-hw-01-cli-app",
+  "version": "1.0.0",
+  "description": "Command execution screenshots",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "start:dev": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexeySapr/goit-node-hw-01-cli-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexeySapr/goit-node-hw-01-cli-app/issues"
+  },
+  "homepage": "https://github.com/AlexeySapr/goit-node-hw-01-cli-app#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
